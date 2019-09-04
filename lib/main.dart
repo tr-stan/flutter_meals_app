@@ -12,7 +12,19 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Meals App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.teal,
+        accentColor: Colors.amber,
+        fontFamily: 'Rubik',
+        textTheme: ThemeData.light().textTheme.copyWith(
+              body1: TextStyle(
+                color: Color.fromRGBO(25, 52, 52, 1),
+              ),
+              title: TextStyle(
+                fontSize:17,
+                fontFamily: 'Rubik',
+                fontWeight: FontWeight.bold,
+              ),
+            ),
       ),
       home: CategoriesScreen(),
     );
