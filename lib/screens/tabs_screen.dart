@@ -2,26 +2,20 @@ import 'package:flutter/material.dart';
 import './categories_screen.dart';
 import './favorites_screen.dart';
 import '../widgets/main_drawer.dart';
+import '../models/meal.dart';
 
 class TabsScreen extends StatefulWidget {
+  final List<Meal> favoriteMeals;
+
+  TabsScreen(this.favoriteMeals);
+
   @override
   _TabsScreenState createState() => _TabsScreenState();
 }
 
 class _TabsScreenState extends State<TabsScreen> {
   // list of widgets to be included in the navbar tabs
-  final List<Map<String, dynamic>> _pages = [
-    {
-      'page': CategoriesScreen(),
-      'title': 'Categories',
-      // could add an 'actions' key here for buttons taps etc.
-    },
-    {
-      'page': FavoritesScreen(),
-      'title': 'Your Favorites',
-      // could add an 'actions' key here for buttons taps etc.
-    },
-  ];
+  List<Map<String, dynamic>> _pages;
 
   // variable for tracking which tab is selected, default first tab
   int _selectedPageIndex = 0;
@@ -31,6 +25,26 @@ class _TabsScreenState extends State<TabsScreen> {
     setState(() {
       _selectedPageIndex = index;
     });
+  }
+
+  // must use initState because otherwise we cannot access the 'widget' property
+  // to pass in the favoriteMeals to the FavoritesScreen
+  // (can't refer to other properties when initializing a class)
+  @override
+  void initState() {
+    super.initState();
+    _pages = [
+    {
+      'page': CategoriesScreen(),
+      'title': 'Categories',
+      // could add an 'actions' key here for buttons taps etc.
+    },
+    {
+      'page': FavoritesScreen(widget.favoriteMeals),
+      'title': 'Your Favorites',
+      // could add an 'actions' key here for buttons taps etc.
+    },
+  ];
   }
 
   @override
