@@ -45,60 +45,60 @@ class MealDetailsScreen extends StatelessWidget {
       ),
       body: SafeArea(
               child: SingleChildScrollView(
-                child: Column(
-            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Container(
-                height: 300,
-                width: double.infinity,
-                child: Image.network(
-                  selectedMeal.imageUrl,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              buildSectionTitle(context, 'Ingredients'),
-              buildContainer(
-                context,
-                ListView.builder(
-                  itemBuilder: (ctx, index) => Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 5,
-                      horizontal: 10,
-                    ),
-                    child: Card(
-                      color: Theme.of(context).accentColor,
-                      child: Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Text(selectedMeal.ingredients[index]),
-                      ),
-                    ),
+                  child: Column(
+              // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Container(
+                  height: 300,
+                  width: double.infinity,
+                  child: Image.network(
+                    selectedMeal.imageUrl,
+                    fit: BoxFit.cover,
                   ),
-                  itemCount: selectedMeal.ingredients.length,
                 ),
-              ),
-              buildSectionTitle(context, 'Steps'),
-              buildContainer(
-                context,
-                ListView.builder(
-                  itemBuilder: (ctx, index) => Column(
-                    children: <Widget>[
-                      ListTile(
-                        leading: CircleAvatar(
-                          child: Text('# ${(index + 1)}'),
-                        ),
-                        title: Text(
-                          selectedMeal.steps[index],
+                buildSectionTitle(context, 'Ingredients'),
+                buildContainer(
+                  context,
+                  ListView.builder(
+                    itemBuilder: (ctx, index) => Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 5,
+                        horizontal: 10,
+                      ),
+                      child: Card(
+                        color: Theme.of(context).accentColor,
+                        child: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Text(selectedMeal.ingredients[index]),
                         ),
                       ),
-                      Divider(),
-                    ],
+                    ),
+                    itemCount: selectedMeal.ingredients.length,
                   ),
-                  itemCount: selectedMeal.steps.length,
                 ),
-              ),
-            ],
+                buildSectionTitle(context, 'Steps'),
+                buildContainer(
+                  context,
+                  ListView.builder(
+                    itemBuilder: (ctx, index) => Column(
+                      children: <Widget>[
+                        ListTile(
+                          leading: CircleAvatar(
+                            child: Text('# ${(index + 1)}'),
+                          ),
+                          title: Text(
+                            selectedMeal.steps[index],
+                          ),
+                        ),
+                        Divider(),
+                      ],
+                    ),
+                    itemCount: selectedMeal.steps.length,
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
       ),
     );
   }

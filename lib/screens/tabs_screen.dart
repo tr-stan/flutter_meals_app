@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './categories_screen.dart';
 import './favorites_screen.dart';
+import '../widgets/main_drawer.dart';
 
 class TabsScreen extends StatefulWidget {
   @override
@@ -13,10 +14,12 @@ class _TabsScreenState extends State<TabsScreen> {
     {
       'page': CategoriesScreen(),
       'title': 'Categories',
+      // could add an 'actions' key here for buttons taps etc.
     },
     {
       'page': FavoritesScreen(),
       'title': 'Your Favorites',
+      // could add an 'actions' key here for buttons taps etc.
     },
   ];
 
@@ -35,6 +38,9 @@ class _TabsScreenState extends State<TabsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(_pages[_selectedPageIndex]['title']),
+      ),
+      drawer: SafeArea(
+        child: MainDrawer(),
       ),
       // output specific screen depending on index from _selectPage onTap method
       body: _pages[_selectedPageIndex]['page'],
